@@ -70,6 +70,14 @@ async function run() {
             const result = await eventCollection.deleteOne(query)
             res.json(result)
          })
+        //   delete api for remove events information from all events(of admin)
+
+         app.delete("/allEvents/:id",async(req,res)=>{
+            const id = req.params.id;
+            const query = {_id: ObjectId(id)}
+            const result = await eventCollection.deleteOne(query)
+            res.json(result)
+        })
 
         //  addmin added in database (put api)
          app.put('/users/admin',async(req,res)=>{
@@ -92,7 +100,19 @@ async function run() {
                res.json({admin : isAdmin})
          })
         
-
+        //  put api for Will the product be pending or approve
+        app.put("/update-status",async(req, res) => {
+            const {id,status} = req.body
+            const filter = {_id : ObjectId(id)}
+            const updateDoc = {
+                 $set:{
+                    status 
+                 }
+            }
+            const result = await eventCollection.updateOne(filter,updateDoc)
+            res.json(result)
+        });
+ 
     } finally {
     //   await client.close();
     }
