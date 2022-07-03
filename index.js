@@ -26,15 +26,15 @@ async function run() {
     // post api
       app.post("/add-voluntiar", async(req,res)=>{
             const body = req.body
-            const result =  await voluntiarCollection.insertOne(body)
-            res.json(result)
+            const results =  await voluntiarCollection.insertOne(body)
+            res.json(results)
       })
 
     //   get api 
         app.get("/add-voluntiar" , async(req,res)=>{
             const cursor =  voluntiarCollection.find({})
-            const result =  await cursor.toArray()
-            res.send(result)
+            const results =  await cursor.toArray()
+            res.send(results)
         })
     //   get api for specipic id
         app.get("/events/:id",async(req,res)=>{
@@ -53,8 +53,8 @@ async function run() {
 
         // geting show all events and all user information
          app.get('/all-events-show',async(req,res)=>{
-            const cursor =  eventCollection.find({})
-            const result =  await cursor.toArray()
+            const cursors =  eventCollection.find({})
+            const result =  await cursors.toArray()
             res.send(result)
          })
         // events geting
