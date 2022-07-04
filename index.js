@@ -47,21 +47,21 @@ async function run() {
         // register post api
         app.post("/events",async(req,res)=>{
             const body = req.body
-            const result =  await eventCollection.insertOne(body)
-            res.json(result)
+            const results =  await eventCollection.insertOne(body)
+            res.json(results)
         })
 
         // geting show all events and all user information
          app.get('/all-events-show',async(req,res)=>{
             const cursors =  eventCollection.find({})
-            const result =  await cursors.toArray()
-            res.send(result)
+            const results =  await cursors.toArray()
+            res.send(results)
          })
         // events geting
         app.get('/show-events-by-mail',async(req,res)=>{
           const cursor = eventCollection.find({email:req.headers.email})
-            const result = await cursor.toArray()
-            res.send(result)
+            const results = await cursor.toArray()
+            res.send(results)
         })
         //  delete api
          app.delete('/events/:id',async(req,res)=>{
